@@ -14,7 +14,7 @@ class CreateGerersTable extends Migration
             $table->unsignedBigInteger('admin_id');
             $table->unsignedBigInteger('utilisateur_id');
             $table->foreign('admin_id')->references('id')->on('administrateurs')->onUpdate('cascade')->onDelete('restrict');
-            $table->foreign('utilisateur_id')->references('id')->on('utilisateurs')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('utilisateur_id')->references('id')->on('utilisateur')->onUpdate('cascade')->onDelete('restrict');
             $table->timestamps();
         });
     }

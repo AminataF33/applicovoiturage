@@ -10,7 +10,7 @@ class CreateConducteursTable extends Migration
     {
         Schema::create('conducteurs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('utilisateur_id')->constrained('utilisateurs');
+            $table->foreignId('utilisateur_id')->constrained('utilisateur');
             $table->string('type_voiture'); // Info spécifique aux conducteurs
             $table->string('immatriculation');
             $table->timestamps();

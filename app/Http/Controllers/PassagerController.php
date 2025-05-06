@@ -17,7 +17,7 @@ class PassagerController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
-            'email' => 'required|email|unique:utilisateurs',
+            'email' => 'required|email|unique:utilisateur',
             'password' => 'required|string|min:6',
             'preferences' => 'required|string',
         ]);
@@ -37,4 +37,9 @@ class PassagerController extends Controller
 
         return redirect()->route('login');
     }
+        public function showLoginForm()
+    {
+        return view('auth.loginpassager');
+    }
+
 }

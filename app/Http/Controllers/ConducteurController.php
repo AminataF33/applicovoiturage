@@ -2,72 +2,77 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Conducteur;
-use App\Models\Utilisateur;
 use Illuminate\Http\Request;
+use App\Models\Conducteur;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
 class ConducteurController extends Controller
 {
-    // Afficher le formulaire d'inscription pour les conducteurs
-    public function showForm()
+    /**
+     * Affiche le formulaire d'inscription conducteur
+     */
+    public function showRegistrationForm()
+    {
+        return view('inscription_conducteur');
+    }
+    /**
+     * Enregistre un nouveau conducteur
+     */
+    public function register(Request $request)
+    {
+        // Validation des données du formulaire
+        $request->validate([
+            'prenom' => 'required|string|max:255',
+            'nom' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'telephone' => 'required|string|max:20',
+            'adresse' => 'required|string|max:255',
+            'password' => 'required|string|min:8',
+            'typeVoiture' => 'required|string|max:255',
+            'immatriculation' => 'required|string|max:20',
+        ]);
+
+        // Création de l'utilisateur
+        $user = User::create([
+            'prenom' => $request->prenom,
+            'nom' => $request->nom,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => 'conducteur',
+        ]);
+
+        // Création du conducteur
+        Conducteur::create([
+            'utilisateur_id' => $user->id,
+            'telephone' => $request->telephone,
+            'adresse' => $request->adresse,
+            'type_voiture' => $request->typeVoiture,
+            'immatriculation' => $request->immatriculation,
+        ]);
+
+        // Message de succès
+        return redirect()->route('login.conducteur')->with('success', 'Votre compte conducteur a été créé avec succès. Veuillez vous connecter.');
+    }
+
+    /**
+     * Affiche le dashboard du conducteur
+     */
+    public function dashboard()
+    {
+        if (!Auth::check() || Auth::user()->role !== 'conducteur') {
+            return redirect()->route('login.conducteur')->with('error', 'Veuillez vous connecter en tant que conducteur pour accéder à cette page.');
+        }
+        
+        $conducteur = Conducteur::where('utilisateur_id', Auth::id())->first();
+        
+        return view('conducteur.dashboard', ['conducteur' => $conducteur]);
+    }    
+        public function showLoginForm()
     {
         return view('auth.loginconducteur');
     }
 
-    // Enregistrer un conducteur (lors de l'inscription)
-    public function store(Request $request)
-    {
-        // Validation des données
-        $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|email|unique:utilisateurs',
-            'password' => 'required|string|min:6',
-            'type_voiture' => 'required|string',
-            'immatriculation' => 'required|string',
-        ]);
 
-        // Créer l'utilisateur (utilisateur générique)
-        $utilisateur = Utilisateur::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        // Créer le conducteur (conducteur spécifique)
-        Conducteur::create([
-            'utilisateur_id' => $utilisateur->id,
-            'type_voiture' => $request->type_voiture,
-            'immatriculation' => $request->immatriculation,
-        ]);
-
-        // Connecter l'utilisateur et rediriger vers la page de connexion ou accueil
-        Auth::login($utilisateur);  // Optionnel : si tu veux connecter l'utilisateur immédiatement
-        return redirect()->route('accueil');  // Rediriger vers la page d'accueil après l'inscription
-    }
-
-    // Afficher le formulaire de connexion pour les conducteurs
-    public function showLoginForm()
-    {
-        return view('auth.login-conducteur');
-    }
-
-    // Authentifier le conducteur
-    public function login(Request $request)
-    {
-        // Validation des données
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|string',
-        ]);
-
-        // Tentative d'authentification
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect()->route('accueil'); // Rediriger vers l'accueil après connexion
-        }
-
-        // Si l'authentification échoue
-        return back()->withErrors(['email' => 'Email ou mot de passe incorrect.']);
-    }
 }

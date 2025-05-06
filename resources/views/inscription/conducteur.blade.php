@@ -3,6 +3,84 @@
 @section("title", "Inscription Conducteur")
 
 @section("content")
+<!-- Navbar -->
+ <div>
+<nav class="bg-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+            <div class="flex">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="{{ route('accueil') }}" class="flex items-center">
+                        <div class="bg-gradient-to-r from-purple-400 to-purple-600 p-2 rounded-full mr-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+                                <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H11a1 1 0 001-1v-1h3.5a1 1 0 00.8-.4l3-4a1 1 0 00.2-.6V8a1 1 0 00-1-1h-3.8L11.35 3.27A2 2 0 009.76 2H5a1 1 0 00-1 1v1zm1 1h5.76L12 8.67V10H4V5z" />
+                            </svg>
+                        </div>
+                        <span class="text-xl font-bold text-purple-800">CoVoiturage</span>
+                    </a>
+                </div>
+                <!-- Navigation Links -->
+                <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                    <a href="{{ route('accueil') }}" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-purple-700 hover:border-purple-300">
+                        Accueil
+                    </a>
+                    <a href="#" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-purple-700 hover:border-purple-300">
+                        Trajets
+                    </a>
+                    <a href="#" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-purple-700 hover:border-purple-300">
+                        À propos
+                    </a>
+                    <a href="#" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-purple-700 hover:border-purple-300">
+                        Contact
+                    </a>
+                </div>
+            </div>
+            <!-- Right Side Menu -->
+            <div class="hidden sm:ml-6 sm:flex sm:items-center">
+                <a href="{{ route('accueil') }}" class="text-gray-600 hover:text-purple-700 px-3 py-2 text-sm font-medium">
+                    Connexion
+                </a>
+            </div>
+            <!-- Mobile menu button -->
+            <div class="flex items-center sm:hidden">
+                <button type="button" class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-purple-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500" aria-controls="mobile-menu" aria-expanded="false">
+                    <span class="sr-only">Ouvrir le menu</span>
+                    <!-- Menu icon -->
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile menu, show/hide based on menu state -->
+    <div class="sm:hidden hidden" id="mobile-menu">
+        <div class="pt-2 pb-3 space-y-1">
+            <a href="{{ route('accueil') }}" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-purple-300 hover:text-purple-700">
+                Accueil
+            </a>
+            <a href="#" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-purple-300 hover:text-purple-700">
+                Trajets
+            </a>
+            <a href="#" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-purple-300 hover:text-purple-700">
+                À propos
+            </a>
+            <a href="#" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-purple-300 hover:text-purple-700">
+                Contact
+            </a>
+            <div class="pt-4 pb-3 border-t border-gray-200">
+            <!--le changer en bouton plus tard-->
+                <a href="{{ route('accueil') }}" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-purple-300 hover:text-purple-700">
+                    Connexion
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
 <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-3xl w-full space-y-8">
         <!-- En-tête avec icône -->
@@ -111,15 +189,7 @@
                                    required>
                         </div>
                     </div>
-                </div>
-
-                <!-- Sécurité -->
-                <div class="mb-6">
-                    <h3 class="text-lg font-semibold text-purple-900 mb-4 flex items-center">
-                        <div class="h-2 w-2 rounded-full bg-purple-500 mr-2"></div>
-                        Sécurité
-                    </h3>
-                    
+                </div>        
                     <div>
                         <label for="mot_de_passe" class="block text-sm font-medium text-gray-700 mb-1">Mot de passe</label>
                         <div class="relative">
@@ -134,7 +204,7 @@
                         </div>
                         <p class="mt-1 text-xs text-gray-500">Minimum 8 caractères, avec majuscules et chiffres</p>
                     </div>
-                </div>
+                
 
                 <!-- Infos véhicule -->
                 <div class="mb-8">
@@ -185,16 +255,20 @@
                 </div>
 
                 <!-- Bouton d'inscription -->
-                <button type="submit"
+                <a href="{{ route('login.conducteur') }}">
+                    <button type="button"
                         class="w-full bg-gradient-to-r from-purple-500 to-purple-700 text-white font-bold py-3 px-4 rounded-lg hover:opacity-90 transition shadow-md flex items-center justify-center">
-                    <span>S'inscrire en tant que Conducteur</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                    </svg>
-                </button>
+                        <span>S'inscrire en tant que Conducteur</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </a>
+
+
             </form>
 
-            <!-- Lien vers connexion Modifier la route-->
+            <!-- Lien vers connexion -->
             <div class="bg-gray-50 py-4 px-8 text-center text-sm text-gray-600 border-t">
                 Déjà inscrit ? <a href="{{ route('accueil') }}" class="text-purple-600 hover:text-purple-800 font-medium">Connectez-vous</a>
             </div>
@@ -210,35 +284,36 @@
                 </div>
                 <div>
                     <h4 class="font-medium text-purple-900">Publiez vos trajets</h4>
-                    <p class="text-xs text-gray-500">Définissez vos horaires et tarifs</p>
-                </div>
-            </div>
-            
-            <div class="bg-white p-4 rounded-lg shadow-sm flex items-center">
-                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mr-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z" />
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd" />
-                    </svg>
-                </div>
-                <div>
-                    <h4 class="font-medium text-purple-900">Gagnez de l'argent</h4>
-                    <p class="text-xs text-gray-500">Rentabilisez vos trajets quotidiens</p>
-                </div>
-            </div>
-            
-            <div class="bg-white p-4 rounded-lg shadow-sm flex items-center">
-                <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0 mr-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd" />
-                    </svg>
-                </div>
-                <div>
-                    <h4 class="font-medium text-purple-900">Réduisez vos frais</h4>
                     <p class="text-xs text-gray-500">Partagez le coût de vos déplacements</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Script pour le menu mobile -->
+<script>
+    // Gestion de l'ouverture/fermeture du menu mobile
+    document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuButton = document.querySelector('.mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', function() {
+                // Toggle la classe hidden pour afficher/masquer le menu
+                mobileMenu.classList.toggle('hidden');
+                
+                // Change l'icône du bouton
+                const icon = mobileMenuButton.querySelector('svg');
+                if (mobileMenu.classList.contains('hidden')) {
+                    // Menu fermé, affiche l'icône burger
+                    icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />';
+                } else {
+                    // Menu ouvert, affiche l'icône X
+                    icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />';
+                }
+            });
+        }
+    });
+</script>
 @endsection

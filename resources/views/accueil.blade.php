@@ -29,42 +29,93 @@
 </head>
 <body>
     <div class="min-h-screen">
-        <nav class="container mx-auto px-4 py-6 flex justify-between items-center">
-            <div class="flex items-center">
-                <div class="text-purple-900 font-bold text-xl flex items-center">
-                    <div class="w-8 h-8 rounded-full bg-purple-500 mr-2 flex items-center justify-center text-white">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm-3.536-6.536a1 1 0 011.414 0L10 13.586l2.122-2.122a1 1 0 111.414 1.414l-2.829 2.829a1 1 0 01-1.414 0l-2.829-2.829a1 1 0 010-1.414z" clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    AppliCovoiturage
+    <!-- Navbar -->
+ <div>
+<nav class="shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+            <div class="flex">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="{{ route('accueil') }}" class="flex items-center">
+                        <div class="bg-gradient-to-r from-purple-400 to-purple-600 p-2 rounded-full mr-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+                                <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H11a1 1 0 001-1v-1h3.5a1 1 0 00.8-.4l3-4a1 1 0 00.2-.6V8a1 1 0 00-1-1h-3.8L11.35 3.27A2 2 0 009.76 2H5a1 1 0 00-1 1v1zm1 1h5.76L12 8.67V10H4V5z" />
+                            </svg>
+                        </div>
+                        <span class="text-xl font-bold text-purple-800">CoVoiturage</span>
+                    </a>
+                </div>
+                <!-- Navigation Links -->
+                <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                    <a href="{{ route('accueil') }}" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-white-500 hover:text-purple-700 hover:border-purple-300">
+                        Accueil
+                    </a>
+                    <a href="#" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-white-500 hover:text-purple-700 hover:border-purple-300">
+                        Trajets
+                    </a>
+                    <a href="#" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-white-500 hover:text-purple-700 hover:border-purple-300">
+                        À propos
+                    </a>
+                    <a href="#" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-white-500 hover:text-purple-700 hover:border-purple-300">
+                        Contact
+                    </a>
                 </div>
             </div>
-            
-            <div class="hidden md:flex space-x-8">
-                <a href="#" class="text-purple-900 hover:text-purple-800">Éléments</a>
-                <a href="#" class="text-purple-900 hover:text-purple-800">Covoiturer</a>
-                <a href="#" class="text-purple-900 hover:text-purple-800">Profils</a>
-            </div>
-            
-            <div class="flex items-center space-x-4">
-                <a href="#" class="hidden md:block text-purple-600 hover:text-purple-800">Aide</a>
+            <!-- Right Side Menu -->
+            <div class="hidden sm:ml-6 sm:flex sm:items-center">
+                <a href="{{ route('accueil') }}" class="text-gray-600 hover:text-purple-700 px-3 py-2 text-sm font-medium">
+                    Connexion
+                </a>
                 <button 
-                    onclick="document.getElementById('roleModal').classList.remove('hidden')"
-                    class="bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700 transition"
-                >
+                onclick="document.getElementById('roleModal').classList.remove('hidden')"
+                    class="bg-purple-600 text-white px-8 py-3 rounded-full hover:bg-purple-700 transition flex items-center mx-auto">
+                  
+                <a href="#">
                     S'inscrire
+                </a>
                 </button>
-                <button 
-                    onclick="document.getElementById('mobileMenu').classList.toggle('hidden')"
-                    class="md:hidden rounded-md p-2 bg-white text-purple-900" 
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            </div>
+            <!-- Mobile menu button -->
+            <div class="flex items-center sm:hidden">
+                <button type="button" class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-purple-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500" aria-controls="mobile-menu" aria-expanded="false">
+                    <span class="sr-only">Ouvrir le menu</span>
+                    <!-- Menu icon -->
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>
             </div>
-        </nav>
+        </div>
+    </div>
+
+    <!-- Mobile menu, show/hide based on menu state -->
+    <div class="sm:hidden hidden" id="mobile-menu">
+        <div class="pt-2 pb-3 space-y-1">
+            <a href="{{ route('accueil') }}" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-purple-300 hover:text-purple-700">
+                Accueil
+            </a>
+            <a href="#" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-purple-300 hover:text-purple-700">
+                Trajets
+            </a>
+            <a href="#" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-purple-300 hover:text-purple-700">
+                À propos
+            </a>
+            <a href="#" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-purple-300 hover:text-purple-700">
+                Contact
+            </a>
+            <div class="pt-4 pb-3 border-t border-gray-200">
+                <a href="{{ route('accueil') }}" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-purple-300 hover:text-purple-700">
+                    Connexion
+                </a>
+                <a href="#" class="block pl-3 pr-4 py-2 border-l-4 border-purple-500 text-base font-medium text-purple-700 bg-purple-50">
+                    S'inscrire
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
         
         <!-- Mobile menu -->
         <div id="mobileMenu" class="md:hidden bg-white p-4 absolute top-20 left-0 right-0 z-40 shadow-lg hidden">

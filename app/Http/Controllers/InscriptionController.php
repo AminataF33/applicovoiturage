@@ -8,29 +8,26 @@ use Illuminate\Http\Request;
 
 class InscriptionController extends Controller
 {
-    // Affichage du formulaire conducteur
     public function formConducteur()
     {
        return view('inscription.conducteur');
     }
 
-    // Affichage du formulaire passager
     public function formPassager()
     {
         return view('inscription.passager');
     }
 
-    // Inscription du conducteur
     public function registerConducteur(Request $request)
     {
         $validated = $request->validate([
             'nom' => 'required|string|max:100',
             'prenom' => 'required|string|max:100',
-            'email' => 'required|email|unique:utilisateurs',
-            'telephone' => 'required|unique:utilisateurs|max:15',
-            'mot_de_passe' => 'required|min:8',
+            'email' => 'required|email|unique:utilisateur',
+            'telephone' => 'required|unique:utilisateur|max:15',
+            'password' => 'required|min:8',
             'adresse' => 'required|string|max:255',
-            'typeVoiture' => 'required|string|max:150',
+            'type_voiture' => 'required|string|max:150',
             'immatriculation' => 'required|string|max:10',
         ]);
 
@@ -39,29 +36,28 @@ class InscriptionController extends Controller
             'prenom' => $validated['prenom'],
             'email' => $validated['email'],
             'telephone' => $validated['telephone'],
-            'mot_de_passe' => bcrypt($validated['mot_de_passe']),
+            'password' => bcrypt($validated['password']),
             'type_utilisateur' => 'Conducteur',
         ]);
 
         Conducteur::create([
-            'Utilisateur_ID' => $utilisateur->ID,
+            'utilisateur_id' => $utilisateur->id,
             'adresse' => $validated['adresse'],
-            'typeVoiture' => $validated['typeVoiture'],
+            'type_voiture' => $validated['type_voiture'],
             'immatriculation' => $validated['immatriculation'],
         ]);
 
-        return redirect()->route('home')->with('success', 'Inscription réussie en tant que conducteur!');
+        return redirect()->route('/login/conducteur')->with('success', 'Inscription réussie en tant que conducteur!');
     }
 
-    // Inscription du passager
     public function registerPassager(Request $request)
     {
         $validated = $request->validate([
             'nom' => 'required|string|max:100',
             'prenom' => 'required|string|max:100',
-            'email' => 'required|email|unique:utilisateurs',
-            'telephone' => 'required|unique:utilisateurs|max:15',
-            'mot_de_passe' => 'required|min:8',
+            'email' => 'required|email|unique:utilisateur',
+            'telephone' => 'required|unique:utilisateur|max:15',
+            'password' => 'required|min:8',
         ]);
 
         $utilisateur = Utilisateur::create([
@@ -69,14 +65,14 @@ class InscriptionController extends Controller
             'prenom' => $validated['prenom'],
             'email' => $validated['email'],
             'telephone' => $validated['telephone'],
-            'mot_de_passe' => bcrypt($validated['mot_de_passe']),
+            'password' => bcrypt($validated['password']),
             'type_utilisateur' => 'Passager',
         ]);
 
         Passager::create([
-            'Utilisateur_ID' => $utilisateur->ID,
+            'utilisateur_id' => $utilisateur->id,
         ]);
 
-        return redirect()->route('home')->with('success', 'Inscription réussie en tant que passager!');
+        return redirect()->route('/login/passager')->with('success', 'Inscription réussie en tant que passager!');
     }
 }

@@ -15,29 +15,25 @@ class ConducteurLoginControllerr extends Controller
         return view('auth.conducteurlogin'); // La vue de connexion que tu vas créer dans resources/views/auth
     }
 
-    // Gérer la connexion du conducteur
     public function login(Request $request)
     {
-        // Validation des entrées
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
-
-        // Vérifier si l'utilisateur existe et est un conducteur
+    
         $utilisateur = Utilisateur::where('email', $request->email)->first();
-
-        // Si l'utilisateur existe et est un conducteur
+    
         if ($utilisateur && Hash::check($request->password, $utilisateur->mot_de_passe) && $utilisateur->conducteur) {
             Auth::login($utilisateur);
-            return redirect('/dashboard-conducteur'); // Remplace par la route ou la page de tableau de bord du conducteur
+            return redirect('/dashboard-conducteur'); 
         }
-
-        // Retourner une erreur si les informations sont incorrectes
+    
         return back()->withErrors([
             'email' => 'Email, mot de passe ou rôle invalide.',
         ]);
     }
+    
 
     // Déconnexion du conducteur
     public function logout()

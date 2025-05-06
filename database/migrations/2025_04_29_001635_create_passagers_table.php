@@ -10,7 +10,7 @@ class CreatePassagersTable extends Migration
     {
         Schema::create('passagers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('utilisateur_id')->constrained('utilisateurs');
+            $table->foreignId('utilisateur_id')->constrained('utilisateur');
             $table->string('preferences'); // Info spécifique aux passagers
             $table->timestamps();
         });

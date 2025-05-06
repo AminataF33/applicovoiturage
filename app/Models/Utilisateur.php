@@ -3,6 +3,8 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class Utilisateur extends Authenticatable
 {
@@ -11,20 +13,26 @@ class Utilisateur extends Authenticatable
     protected $table = 'utilisateur';
 
     protected $fillable = [
-        'nom', 'prenom', 'email', 'telephone', 'mot_de_passe',
+        'nom', 'prenom', 'email', 'telephone', 'password',
     ];
 
     protected $hidden = [
-        'mot_de_passe',
+        'password',
     ];
 
-    public function getAuthPassword()
+    public function setMotDePasseAttribute($value)
     {
-        return $this->mot_de_passe;
+        $this->attributes['password'] = bcrypt($value);
     }
+
 
     public function passager()
     {
         return $this->hasOne(Passager::class, 'Utilisateur_ID');
+    }
+    use HasFactory;
+    public function conducteur()
+    {
+        return $this->hasOne(Conducteur::class, 'Utilisateur_ID');
     }
 }

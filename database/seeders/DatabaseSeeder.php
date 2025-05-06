@@ -1,6 +1,7 @@
 <?php
 
 namespace Database\Seeders;
+use App\Models\Conducteur;
 
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -19,5 +20,6 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+        $this->call(ConducteurSeeder::class);
     }
 }

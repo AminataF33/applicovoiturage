@@ -3,6 +3,82 @@
 @section("title", "Inscription Passager")
 
 @section("content")
+<!-- Navbar -->
+ <div>
+<nav class="bg-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+            <div class="flex">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="{{ route('accueil') }}" class="flex items-center">
+                        <div class="bg-gradient-to-r from-purple-400 to-purple-600 p-2 rounded-full mr-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+                                <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H11a1 1 0 001-1v-1h3.5a1 1 0 00.8-.4l3-4a1 1 0 00.2-.6V8a1 1 0 00-1-1h-3.8L11.35 3.27A2 2 0 009.76 2H5a1 1 0 00-1 1v1zm1 1h5.76L12 8.67V10H4V5z" />
+                            </svg>
+                        </div>
+                        <span class="text-xl font-bold text-purple-800">CoVoiturage</span>
+                    </a>
+                </div>
+                <!-- Navigation Links -->
+                <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                    <a href="{{ route('accueil') }}" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-purple-700 hover:border-purple-300">
+                        Accueil
+                    </a>
+                    <a href="#" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-purple-700 hover:border-purple-300">
+                        Trajets
+                    </a>
+                    <a href="#" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-purple-700 hover:border-purple-300">
+                        À propos
+                    </a>
+                    <a href="#" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-purple-700 hover:border-purple-300">
+                        Contact
+                    </a>
+                </div>
+            </div>
+            <!-- Right Side Menu -->
+            <div class="hidden sm:ml-6 sm:flex sm:items-center">
+                <a href="{{ route('accueil') }}" class="text-gray-600 hover:text-purple-700 px-3 py-2 text-sm font-medium">
+                    Connexion
+                </a>
+            </div>
+            <!-- Mobile menu button -->
+            <div class="flex items-center sm:hidden">
+                <button type="button" class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-purple-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500" aria-controls="mobile-menu" aria-expanded="false">
+                    <span class="sr-only">Ouvrir le menu</span>
+                    <!-- Menu icon -->
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile menu, show/hide based on menu state -->
+    <div class="sm:hidden hidden" id="mobile-menu">
+        <div class="pt-2 pb-3 space-y-1">
+            <a href="{{ route('accueil') }}" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-purple-300 hover:text-purple-700">
+                Accueil
+            </a>
+            <a href="#" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-purple-300 hover:text-purple-700">
+                Trajets
+            </a>
+            <a href="#" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-purple-300 hover:text-purple-700">
+                À propos
+            </a>
+            <a href="#" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-purple-300 hover:text-purple-700">
+                Contact
+            </a>
+            <div class="pt-4 pb-3 border-t border-gray-200">
+                <a href="{{ route('accueil') }}" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-purple-300 hover:text-purple-700">
+                    Connexion
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
 <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-3xl w-full space-y-8">
         <!-- En-tête avec icône -->
@@ -95,32 +171,24 @@
                                        required>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Sécurité -->
-                <div class="mb-8">
-                    <h3 class="text-lg font-semibold text-purple-900 mb-4 flex items-center">
-                        <div class="h-2 w-2 rounded-full bg-blue-500 mr-2"></div>
-                        Sécurité
-                    </h3>
-                    
-                    <div>
-                        <label for="mot_de_passe" class="block text-sm font-medium text-gray-700 mb-1">Mot de passe</label>
-                        <div class="relative">
-                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
-                                </svg>
+                        <div class="mb-8">
+                            <div class="w-full">
+                                <label for="mot_de_passe" class="block text-sm font-medium text-gray-700 mb-1">Mot de passe</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                    <input type="password" id="mot_de_passe" name="mot_de_passe" 
+                                        class="w-full pl-10 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" 
+                                        required>
+                                </div>
+                                <p class="mt-1 text-xs text-gray-500">Minimum 8 caractères, avec majuscules et chiffres</p>
                             </div>
-                            <input type="password" id="mot_de_passe" name="mot_de_passe" 
-                                   class="w-full pl-10 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" 
-                                   required>
                         </div>
-                        <p class="mt-1 text-xs text-gray-500">Minimum 8 caractères, avec majuscules et chiffres</p>
                     </div>
                 </div>
-
                 <!-- Préférences de voyage (section supplémentaire) -->
                 <div class="mb-8">
                     <h3 class="text-lg font-semibold text-purple-900 mb-4 flex items-center">
@@ -235,4 +303,3 @@
     </div>
 </div>
 @endsection
-accueil
