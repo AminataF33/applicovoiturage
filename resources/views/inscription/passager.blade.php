@@ -3,7 +3,7 @@
 @section("title", "Inscription Passager")
 
 @section("content")
-<!-- Navbar -->
+<!-- Navbar --> 
  <div>
 <nav class="bg-white shadow-md">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -72,7 +72,7 @@
                 Contact
             </a>
             <div class="pt-4 pb-3 border-t border-gray-200">
-                <a href="{{ route('accueil') }}" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-purple-300 hover:text-purple-700">
+                <a href="{{ route('login') }}" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-purple-300 hover:text-purple-700">
                     Connexion
                 </a>
             </div>
@@ -246,6 +246,7 @@
                 </div>
 
                 <!-- Bouton d'inscription -->
+                <a href="{{ route('login') }}" class="block mb-4">
                 <button type="submit"
                         class="w-full bg-gradient-to-r from-blue-400 to-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:opacity-90 transition shadow-md flex items-center justify-center">
                     <span>S'inscrire en tant que Passager</span>
@@ -253,11 +254,12 @@
                         <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
                     </svg>
                 </button>
+                </a>
             </form>
 
             <!-- Lien vers connexion Modifier la route -->
             <div class="bg-gray-50 py-4 px-8 text-center text-sm text-gray-600 border-t">
-                Déjà inscrit ? <a href="{{ route('accueil') }}" class="text-blue-600 hover:text-blue-800 font-medium">Connectez-vous</a>
+                Déjà inscrit ? <a href="{{ route('login') }}" class="text-blue-600 hover:text-blue-800 font-medium">Connectez-vous</a>
             </div>
         </div>
 

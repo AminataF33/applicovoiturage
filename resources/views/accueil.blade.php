@@ -65,7 +65,7 @@
             </div>
             <!-- Right Side Menu -->
             <div class="hidden sm:ml-6 sm:flex sm:items-center">
-                <a href="{{ route('accueil') }}" class="text-gray-600 hover:text-purple-700 px-3 py-2 text-sm font-medium">
+                <a href="{{ route('login') }}" class="text-gray-600 hover:text-purple-700 px-3 py-2 text-sm font-medium">
                     Connexion
                 </a>
                 <button 

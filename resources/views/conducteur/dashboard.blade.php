@@ -1,6 +1,9 @@
 @extends("layouts.default")
 @section("title", "Dashboard Conducteur")
 @section("content")
+<html class="h-full">
+<body class="h-full">
+<div>
 <!-- Navbar -->
 <nav class="bg-white shadow-md">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -21,6 +24,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
                     <a href="{{ route('conducteur.dashboard') }}" class="inline-flex items-center px-1 pt-1 border-b-2 border-purple-500 text-sm font-medium text-purple-900">
+                    <a href="" class="inline-flex items-center px-1 pt-1 border-b-2 border-purple-500 text-sm font-medium text-purple-900">  
                         Dashboard
                     </a>
                     <a href="{{ route('conducteur.trajets') }}" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-purple-700 hover:border-purple-300">
@@ -29,7 +33,8 @@
                     <a href="{{ route('conducteur.trajets.create') }}" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-purple-700 hover:border-purple-300">
                         Créer un Trajet
                     </a>
-                    <a href="{{ route('messages.index') }}" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-purple-700 hover:border-purple-300">
+                    <!--messages.index -->
+                    <a href="#" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-purple-700 hover:border-purple-300">
                         Messages
                     </a>
                 </div>
@@ -46,9 +51,12 @@
                     
                     <!-- Dropdown menu, show/hide based on menu state -->
                     <div class="dropdown-menu origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none hidden" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-                        <a href="{{ route('profile.show') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1">Votre Profil</a>
-                        <a href="{{ route('conducteur.vehicules') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1">Mes Véhicules</a>
-                        <a href="{{ route('parametres') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1">Paramètres</a>
+                        <!--profile.show--> 
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1">Votre Profil</a>
+                        <!--conducteur.vehicules-->
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1">Mes Véhicules</a>
+                        <!--parametres-->
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1">Paramètres</a>
                         <div class="border-t border-gray-100"></div>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -87,7 +95,8 @@
             <a href="{{ route('conducteur.trajets.create') }}" class="border-l-4 border-transparent text-gray-600 hover:bg-gray-50 hover:border-purple-300 hover:text-purple-700 block pl-3 pr-4 py-2 text-base font-medium">
                 Créer un Trajet
             </a>
-            <a href="{{ route('messages.index') }}" class="border-l-4 border-transparent text-gray-600 hover:bg-gray-50 hover:border-purple-300 hover:text-purple-700 block pl-3 pr-4 py-2 text-base font-medium">
+            <!--messages.index -->
+            <a href="#" class="border-l-4 border-transparent text-gray-600 hover:bg-gray-50 hover:border-purple-300 hover:text-purple-700 block pl-3 pr-4 py-2 text-base font-medium">  
                 Messages
             </a>
         </div>
@@ -104,13 +113,16 @@
                 </div>
             </div>
             <div class="mt-3 space-y-1">
-                <a href="{{ route('profile.show') }}" class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">
+                <!--profile.show-->
+                <a href="#" class="border-l-4 border-transparent text-gray-600 hover:bg-gray-50 hover:border-purple-300 hover:text-purple-700 block pl-3 pr-4 py-2 text-base font-medium">  
                     Votre Profil
                 </a>
-                <a href="{{ route('conducteur.vehicules') }}" class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">
+                <!--conducteur.vehicules-->
+                <a href="#" class="border-l-4 border-transparent text-gray-600 hover:bg-gray-50 hover:border-purple-300 hover:text-purple-700 block pl-3 pr-4 py-2 text-base font-medium">  
                     Mes Véhicules
                 </a>
-                <a href="{{ route('parametres') }}" class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">
+                <!--parametres -->
+                <a href="#" class="border-l-4 border-transparent text-gray-600 hover:bg-gray-50 hover:border-purple-300 hover:text-purple-700 block pl-3 pr-4 py-2 text-base font-medium">  
                     Paramètres
                 </a>
                 <form method="POST" action="{{ route('logout') }}">
@@ -252,7 +264,9 @@
                 <ul role="list" class="divide-y divide-gray-200">
                     @forelse($prochainsTrajets as $trajet)
                     <li>
-                        <a href="{{ route('conducteur.trajets.show', $trajet->id) }}" class="block hover:bg-gray-50">
+                        <!--conducteur.trajets.show', $trajet->id)-->
+                        <a href="#, $trajet->id)" class="block hover:bg-gray-50">
+
                             <div class="px-4 py-4 sm:px-6">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center">
@@ -422,3 +436,6 @@
         @endif
     </div>
 </div>
+</div>
+</body>
+</html>

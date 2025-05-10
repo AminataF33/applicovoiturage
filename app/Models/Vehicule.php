@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,36 +8,44 @@ class Vehicule extends Model
 {
     use HasFactory;
     
+    // Correction du nom de la table
+    protected $table = 'vehicules';
+    
     /**
-     * The attributes that are mass assignable.
+     * Les attributs qui sont mass assignable.
      *
-     * @var array
+     * @var array<int, string>
      */
     protected $fillable = [
-        'user_id',
+        'marque',
         'modele',
         'immatriculation',
-        'annee',
         'couleur',
         'nombre_places',
-        'type_carburant',
-        'photo',
-        'etat', // actif ou inactif
+        'conducteur_id',
     ];
     
     /**
-     * Get the user that owns the vehicle.
+     * Obtenir le conducteur propriétaire de ce véhicule.
      */
-    public function user()
+    public function conducteur()
     {
-        return $this->belongsTo(User::class);
+        // La clé étrangère pointe vers utilisateur_id dans la table conducteurs
+        return $this->belongsTo(Conducteur::class, 'conducteur_id', 'utilisateur_id');
     }
     
     /**
-     * Get the trips associated with this vehicle.
+     * Obtenir l'utilisateur propriétaire de ce véhicule.
      */
-    public function trajets()
+    public function utilisateur()
     {
-        return $this->hasMany(Trajet::class);
+        return $this->hasOneThrough(
+            Utilisateur::class,
+            Conducteur::class,
+            'utilisateur_id', 
+            'id',            
+            'conducteur_id', 
+            'utilisateur_id'
+        );
     }
 }

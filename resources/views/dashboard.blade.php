@@ -1,7 +1,6 @@
 @extends('layouts.conducteur')
 
 @section('title', 'Tableau de bord Conducteur')
-
 @section('content')
 <div class="bg-gray-100 min-h-screen">
     <!-- Entête du tableau de bord -->

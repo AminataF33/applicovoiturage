@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Utilisateur;
@@ -10,7 +11,7 @@ class InscriptionController extends Controller
 {
     public function formConducteur()
     {
-       return view('inscription.conducteur');
+        return view('inscription.conducteur');
     }
 
     public function formPassager()
@@ -37,7 +38,7 @@ class InscriptionController extends Controller
             'email' => $validated['email'],
             'telephone' => $validated['telephone'],
             'password' => bcrypt($validated['password']),
-            'type_utilisateur' => 'Conducteur',
+            'role' => 'conducteur', 
         ]);
 
         Conducteur::create([
@@ -47,7 +48,7 @@ class InscriptionController extends Controller
             'immatriculation' => $validated['immatriculation'],
         ]);
 
-        return redirect()->route('/login/conducteur')->with('success', 'Inscription réussie en tant que conducteur!');
+        return redirect()->route('login')->with('success', 'Inscription réussie en tant que conducteur! Veuillez-vous connecter!');
     }
 
     public function registerPassager(Request $request)
@@ -66,13 +67,14 @@ class InscriptionController extends Controller
             'email' => $validated['email'],
             'telephone' => $validated['telephone'],
             'password' => bcrypt($validated['password']),
-            'type_utilisateur' => 'Passager',
+            'role' => 'passager',
         ]);
 
         Passager::create([
             'utilisateur_id' => $utilisateur->id,
         ]);
 
-        return redirect()->route('/login/passager')->with('success', 'Inscription réussie en tant que passager!');
+        return redirect()->route('login')->with('success', 'Inscription réussie en tant que passager! Veuillez-vous connecter!');
     }
 }
+

@@ -2,7 +2,7 @@
 
 use App\Models\Conducteur;
 use Illuminate\Database\Seeder;
-use App\Models\User; // ou Conducteur si tu as un modèle séparé
+use App\Models\Utilisateur; // ou Conducteur si tu as un modèle séparé
 use Illuminate\Support\Facades\Hash;
 
 class ConducteurSeeder extends Seeder

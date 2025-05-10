@@ -14,5 +14,10 @@ class Passager extends Model
     {
         return $this->belongsTo(Utilisateur::class);
     }
+
+    public function demandes()
+    {
+        return $this->hasMany(Demande::class);
+    }
 }
 

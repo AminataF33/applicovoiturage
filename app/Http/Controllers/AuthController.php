@@ -3,47 +3,60 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Utilisateur; // Assure-toi que ce modèle existe
+use App\Models\Utilisateur;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class AuthController extends Controller
 {
-    public function login(Request $request)
+    /**
+     * Affiche le formulaire de connexion.
+     */
+    public function showLoginForm(Request $request)
     {
-        // Validation des données reçues
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|string',
-        ]);
-
-        // Recherche de l'utilisateur par email
-        $user = Utilisateur::where('email', $request->email)->first();
-
-        // Vérification si l'utilisateur existe
-        if (!$user) {
-            return response()->json([
-                'message' => 'Adresse email incorrecte ou utilisateur introuvable.'
-            ], 404);
-        }
-
-        // Vérification du mot de passe
-        if (!Hash::check($request->password, $user->mot_de_passe)) {
-            return response()->json([
-                'message' => 'Mot de passe incorrect.'
-            ], 401);
-        }
-
-        // Connexion réussie : tu peux générer un token ici si tu utilises Laravel Sanctum ou Passport
-        return response()->json([
-            'message' => 'Connexion réussie.',
-            'user_id' => $user->id,
-            'user_role' => $user->role ?? 'passager' // s'il y a un champ role
-        ], 200);
+        $role = $request->query('role', 'passager'); // rôle par défaut
+        return view('auth.login', ['role' => $role]);
     }
 
-        /**
-     * Déconnecte l'utilisateur
+    /**
+     * Traite la connexion de l'utilisateur.
+     */
+    public function login(Request $request)
+{
+    // Validation des champs
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required|string',
+        'role' => 'required|in:conducteur,passager', // On valide aussi le rôle
+    ]);
+
+    // Recherche de l'utilisateur par son email
+    $utilisateur = Utilisateur::where('email', $request->email)->first();
+
+    // Vérifier si l'utilisateur existe et que le mot de passe est correct
+    if (!$utilisateur || !Hash::check($request->password, $utilisateur->password)) {
+        return back()->withErrors([
+            'email' => 'Adresse email ou mot de passe incorrect.',
+        ])->withInput();
+    }
+
+    // Vérification du rôle
+    if ($utilisateur->role !== $request->role) {
+        return back()->withErrors([
+            'role' => 'Le rôle ne correspond pas à ce compte.',
+        ])->withInput();
+    }
+
+    // Connexion de l'utilisateur
+    Auth::login($utilisateur);
+
+    // Redirection vers le tableau de bord approprié en fonction du rôle
+    return redirect()->route($utilisateur->role . '.dashboard');
+}
+
+    /**
+     * Déconnecte l'utilisateur.
      */
     public function logout(Request $request)
     {
@@ -54,10 +67,4 @@ class AuthController extends Controller
 
         return redirect()->route('accueil');
     }
-
-    public function showLoginForm()
-    {
-        return view('auth.login');
-    }
-
 }

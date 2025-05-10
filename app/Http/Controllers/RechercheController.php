@@ -24,4 +24,5 @@ class RechercheController extends Controller
 
         return view('resultats', compact('trajets'));
     }
-}
+} 
+

@@ -58,7 +58,7 @@ return new class extends Migration
             $table->integer('nombre_places');
             $table->integer('places_disponibles');
             $table->text('commentaire')->nullable();
-            $table->json('options')->nullable(); // climatisation, animaux, etc.
+            $table->json('options')->nullable();
             $table->string('statut')->default('planifié'); // planifié, en cours, terminé, annulé
             $table->timestamps();
         });

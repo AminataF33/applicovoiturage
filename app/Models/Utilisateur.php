@@ -13,9 +13,14 @@ class Utilisateur extends Authenticatable
     protected $table = 'utilisateur';
 
     protected $fillable = [
-        'nom', 'prenom', 'email', 'telephone', 'password',
+        'nom',
+        'prenom',
+        'email',
+        'telephone',
+        'password',
+        'role',
     ];
-
+    
     protected $hidden = [
         'password',
     ];
@@ -35,4 +40,9 @@ class Utilisateur extends Authenticatable
     {
         return $this->hasOne(Conducteur::class, 'Utilisateur_ID');
     }
+    public function vehicules()
+    {
+        return $this->hasMany(Vehicule::class, 'utilisateur_id');
+    }
+
 }

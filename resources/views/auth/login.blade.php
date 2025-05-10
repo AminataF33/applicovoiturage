@@ -1,9 +1,8 @@
 @extends("layouts.default")
-
 @section("title", "Connexion")
-
 @section("content")
 <!-- Navbar -->
+<div>
 <nav class="bg-white shadow-md">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -109,7 +108,7 @@
             </div>
 
             <!-- Formulaire -->
-            <form action="{{ route('login.post') }}" method="POST" class="p-8">
+            <form action="{{ route('login') }}" method="POST" class="p-8">
                 @csrf
                 <div class="mb-6">
                     <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
@@ -139,6 +138,13 @@
                                required>
                     </div>
                 </div>
+                <div class="mb-6">
+                    <label for="role" class="block text-sm font-medium text-gray-700 mb-1">Rôle</label>
+                    <select name="role" id="role" required>
+                        <option value="conducteur">Conducteur</option>
+                        <option value="passager">Passager</option>
+                    </select>
+                </div>
 
                 <div class="flex items-center justify-between mb-6">
                     <div class="flex items-center">
@@ -152,24 +158,28 @@
                             Mot de passe oublié?
                         </a>
                     </div>
+
+
                 </div>
 
-                <button type="submit" class="w-full bg-gradient-to-r from-purple-500 to-purple-700 text-white font-bold py-3 px-4 rounded-lg hover:opacity-90 transition shadow-md flex items-center justify-center">
+             <a href="{{route('login')}}">
+             <button type="submit" class="w-full bg-gradient-to-r from-purple-500 to-purple-700 text-white font-bold py-3 px-4 rounded-lg hover:opacity-90 transition shadow-md flex items-center justify-center">
                     <span>Se connecter</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
                     </svg>
                 </button>
+             </a>
             </form>
 
             <div class="bg-gray-50 py-4 px-8 text-center text-sm text-gray-600 border-t">
                 Pas encore de compte ? 
-                <a href="{{ route('register.conducteur.form') }}" class="text-purple-600 hover:text-purple-800 font-medium">Inscrivez-vous en tant que conducteur</a>
+                <a href="{{ route('register.conducteur') }}" class="text-purple-600 hover:text-purple-800 font-medium">Inscrivez-vous en tant que conducteur</a>
             </div>
         </div>
     </div>
 </div>
-
+</div>
 <!-- Script pour le menu mobile -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {

@@ -1,12 +1,12 @@
 <?php 
 namespace App\Http\Controllers;
-
 use App\Models\Utilisateur; // Assure-toi que Utilisateur est bien le modèle utilisateur
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class UserLoginController extends Controller
+
+class UtilisateurLoginController extends Controller
 {
     // Afficher le formulaire de connexion pour l'utilisateur
     public function loginForm()
@@ -26,18 +26,19 @@ class UserLoginController extends Controller
         // Vérifier si l'utilisateur existe
         $utilisateur = Utilisateur::where('email', $request->email)->first();
 
-        // Si l'utilisateur existe et que le mot de passe est correct
-        if ($utilisateur && Hash::check($request->password, $utilisateur->mot_de_passe)) {
+        // Vérifier si l'utilisateur existe et que le mot de passe est correct
+        if ($utilisateur && Hash::check($request->password, $utilisateur->password)) {
             Auth::login($utilisateur);
 
             // Vérifier si l'utilisateur est un conducteur et rediriger en conséquence
             if ($utilisateur->role == 'conducteur') {
-                return redirect()->route('dashboard.conducteur'); // Rediriger vers le tableau de bord du conducteur
+                return redirect()->route('conducteur.dashboard'); // Assure-toi que cette route existe
             }
 
             // Si l'utilisateur est un passager, rediriger vers le tableau de bord des passagers
-            return redirect()->route('dashboard.passager'); // Ajuste cette route selon tes besoins
+            return redirect()->route('passager.dashboard'); // Assure-toi que cette route existe également
         }
+
 
         // Retourner une erreur si les informations sont incorrectes
         return back()->withErrors([
@@ -52,3 +53,4 @@ class UserLoginController extends Controller
         return redirect()->route('login'); // Rediriger vers la page de login
     }
 }
+

@@ -9,17 +9,17 @@ class CreateUtilisateurTable extends Migration
     public function up(): void
     {
         Schema::create('utilisateur', function (Blueprint $table) {
-            $table->id();
-            $table->string('prenom');
-            $table->string('nom');
-            $table->string('email')->unique();
-            $table->string('telephone')->unique();
-            $table->string('adresse')->nullable();
-            $table->string('password');
-            $table->string('role')->default('passager');
-            $table->timestamps(); 
-        });
-    }
+                $table->id();
+                $table->string('nom');
+                $table->string('prenom');
+                $table->string('email')->unique();
+                $table->string('telephone')->unique();
+                $table->string('password');
+                $table->string('role'); 
+                $table->timestamps();
+            });
+            
+    } 
 
     public function down(): void 
     {
